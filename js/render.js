@@ -71,7 +71,7 @@ const matrix = () => sec('matrix', '// SYSTEMS_MATRIX', 'The Systems Matrix',
 const approach = () => sec('approach', '// HOW_I_THINK', 'How I think about automation',
   h('div', { class: 'grid' }, C.approach.map((a, i) => h('div', { class: 'card sel', 'data-sel': 'principle' }, h('p', { class: 'tag mono' }, '0' + (i + 1)), h('h4', {}, a.t), h('p', { class: 'muted' }, a.d)))),
   h('ol', { class: 'flow mono', 'aria-label': 'Pipeline stages' }, C.flow.map((f) => h('li', {}, f))),
-  h('p', { class: 'cicd mono' }, 'CI/CD · tests · versioned releases wrap every stage'));
+  h('p', { class: 'cicd mono' }, 'Checks at each step · clear outputs · straightforward handover'));
 
 const offer = () => sec('offer', '// WHAT_I_BUILD', C.offer.title,
   h('div', { class: 'grid' }, C.offer.items.map((s) => h('div', { class: 'card sel', 'data-sel': 'service' }, h('h4', {}, s.t), h('p', { class: 'muted' }, s.d), tags(s.tags)))),

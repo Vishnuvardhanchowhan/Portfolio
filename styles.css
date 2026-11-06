@@ -103,3 +103,70 @@ footer{margin-top:5rem;padding:24px 0;border-top:1px solid var(--line);color:var
 .faq summary{cursor:pointer;font-weight:700;font-size:1.1rem}
 .faq details p{margin:.6rem 0 0;max-width:70ch}
 .core{margin-top:1rem}.core span{color:var(--fg);border-color:var(--red)}
+
+/* Responsive layout adjustments. Desktop styling above remains the default. */
+.nav-toggle{display:none;flex:none;width:38px;height:36px;padding:8px;border:1px solid var(--line);background:transparent;color:var(--fg);cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:4px}
+.nav-toggle span{display:block;width:17px;height:2px;background:currentColor;transition:transform .18s,opacity .18s}
+.nav-toggle:focus-visible{outline:2px solid var(--cy);outline-offset:3px}
+
+/* Keep long words, tags and cards inside the available screen width. */
+#main,.hero,.sec,.about-grid,.grid,.card,.tl{min-width:0}
+.hero-word,.name,.chip,.pitch,.card h4,.row,.tags span{overflow-wrap:anywhere}
+
+@media(max-width:860px){
+  .nav{gap:10px}
+  .nav-toggle{display:flex;margin-left:auto}
+  #nav{display:none;position:absolute;top:56px;left:0;right:0;margin:0;padding:8px 16px 12px;flex-direction:column;gap:0;max-height:calc(100svh - 56px);overflow-y:auto;background:var(--bg);border-bottom:1px solid var(--line);box-shadow:0 14px 28px rgba(0,0,0,.28)}
+  .nav.nav-open #nav{display:flex}
+  #nav a{display:block;width:100%;padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+  #nav a:last-child{border-bottom:0}
+  #theme{margin-left:0}
+  .hero{min-height:100svh;padding-bottom:48px}
+  .statbar{position:static;left:auto;right:auto;bottom:auto;width:100%;margin-top:3rem}
+}
+
+@media(max-width:600px){
+  html{scroll-padding-top:64px}
+  .nav{padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right))}
+  .hero{min-height:100svh;padding:88px 18px 36px;justify-content:flex-start}
+  .hero-word{font-size:clamp(2.8rem,14.5vw,5.8rem);line-height:.95;letter-spacing:-.055em;-webkit-text-stroke:1.25px var(--red);max-width:100%}
+  .hello{font-size:1.25rem;margin:1.1rem 0 .4rem}
+  .name{font-size:clamp(1.45rem,6.4vw,2.35rem);line-height:1.15;max-width:100%;padding:.14em .28em}
+  .chip{font-size:10px;letter-spacing:.055em;line-height:1.5;padding:5px 8px;margin-top:1rem;max-width:100%}
+  .pitch{font-size:1rem;line-height:1.55;max-width:60ch}
+  .btns{gap:9px}
+  .btn{padding:11px 14px}
+  .statbar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:2rem}
+  .stat{min-width:0;padding:9px 10px;display:flex;flex-direction:column;align-items:flex-start;gap:2px}
+  .stat b{font-size:1rem}
+  .stat span{font-size:10px;line-height:1.4;overflow-wrap:anywhere}
+  .sec{padding:76px 18px 0}
+  h2{font-size:clamp(1.9rem,8vw,2.7rem)}
+  .about-grid{grid-template-columns:minmax(0,1fr);gap:24px}
+  blockquote{font-size:1.2rem;padding-left:1rem}
+  .photo{width:min(100%,240px);max-width:240px}
+  .tl{grid-template-columns:minmax(0,1fr);gap:10px;padding:20px 0}
+  .tl h3{font-size:1.2rem;overflow-wrap:anywhere}
+  .grid{grid-template-columns:minmax(0,1fr);gap:12px}
+  .card{padding:18px;gap:9px}
+  .tags{gap:6px}
+  .tags span{white-space:normal;line-height:1.5}
+  .flow{gap:7px}
+  .flow li{padding:7px 10px;font-size:11px;white-space:normal}
+  .faq summary{font-size:1rem;line-height:1.45}
+  footer{margin-top:3.5rem}
+}
+
+@media(max-width:380px){
+  .hero{padding-left:16px;padding-right:16px}
+  .hero-word{font-size:clamp(2.55rem,13.8vw,3.25rem)}
+  .name{font-size:1.4rem}
+  .btns .btn{flex:1 1 100%;text-align:center}
+  .statbar{grid-template-columns:minmax(0,1fr)}
+  .sec{padding-left:16px;padding-right:16px}
+  .card{padding:16px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .nav-toggle span{transition:none}
+}

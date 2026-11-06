@@ -97,3 +97,9 @@ footer{margin-top:5rem;padding:24px 0;border-top:1px solid var(--line);color:var
   .js .reveal.in{opacity:1;transform:none}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+
+.who{color:var(--mut);font-size:12px;margin-top:1.4rem}
+.faq details{border-top:1px solid var(--line);padding:16px 0}
+.faq summary{cursor:pointer;font-weight:700;font-size:1.1rem}
+.faq details p{margin:.6rem 0 0;max-width:70ch}
+.core{margin-top:1rem}.core span{color:var(--fg);border-color:var(--red)}

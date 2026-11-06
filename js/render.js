@@ -34,6 +34,7 @@ const hero = () => h('section', { id: 'home', class: 'hero' },
   h('h1', { class: 'name' }, C.name),
   h('p', { class: 'chip mono sel', 'data-sel': 'role' }, C.role),
   h('p', { class: 'pitch' }, C.pitch),
+  C.core && h('div', { class: 'tags core' }, C.core.map((t) => h('span', {}, t))),
   h('div', { class: 'btns' }, btn('Get in touch', '#contact', 1), btn('Explore projects →', '#projects'), C.links.resume && btn('Resume', C.links.resume)),
   h('div', { class: 'cube-wrap', 'aria-hidden': 'true' }, h('div', { class: 'cube' }, ['ETL', 'CI/CD', 'SQL', 'PY', 'BI', 'VHDL'].map((f) => h('i', {}, f)))),
   h('div', { class: 'statbar' }, C.stats.map(stat)));
@@ -59,7 +60,7 @@ const experience = () => sec('experience', '// EXPERIENCE', 'Where I’ve built 
   h('h3', { class: 'sub' }, 'Achievements'),
   h('ul', { class: 'ach' }, C.achievements.map((a) => h('li', {}, a))));
 
-const projects = () => sec('projects', '// FLAGSHIP_DEPLOYMENTS', 'Flagship Deployments',
+const projects = () => sec('projects', '// SELECTED_WORK', 'Work that runs in production',
   C.tracks.map((t) => h('div', { class: 'track', id: t.id },
     h('h3', {}, t.name), h('p', { class: 'muted' }, t.blurb),
     h('div', { class: 'grid' }, t.cards.map(card)))));
@@ -72,14 +73,25 @@ const approach = () => sec('approach', '// HOW_I_THINK', 'How I think about auto
   h('ol', { class: 'flow mono', 'aria-label': 'Pipeline stages' }, C.flow.map((f) => h('li', {}, f))),
   h('p', { class: 'cicd mono' }, 'CI/CD · tests · versioned releases wrap every stage'));
 
+const offer = () => sec('offer', '// WHAT_I_BUILD', C.offer.title,
+  h('div', { class: 'grid' }, C.offer.items.map((s) => h('div', { class: 'card sel', 'data-sel': 'service' }, h('h4', {}, s.t), h('p', { class: 'muted' }, s.d), tags(s.tags)))),
+  h('p', { class: 'who mono' }, 'Built for: ' + C.offer.clients));
+
+const howWork = () => sec('process', '// HOW_WE_WORK', 'From brief to handover',
+  h('div', { class: 'grid' }, C.process.map((s, i) => h('div', { class: 'card sel', 'data-sel': 'step' }, h('p', { class: 'tag mono' }, '0' + (i + 1)), h('h4', {}, s.t), h('p', { class: 'muted' }, s.d)))));
+
+const faq = () => sec('faq', '// FAQ', 'Straight answers',
+  h('div', { class: 'faq' }, C.faq.map((f) => h('details', {}, h('summary', {}, f.q), h('p', { class: 'muted' }, f.a)))));
+
 const contact = () => sec('contact', '// CONTACT', C.cta.title,
   h('p', { class: 'pitch' }, C.cta.text),
   h('div', { class: 'btns' },
-    btn('Email', C.links.email, 1), btn('LinkedIn ↗', C.links.linkedin), btn('GitHub ↗', C.links.github), C.links.archive && btn('Previous site ↗', C.links.archive)),
+    btn('Email', C.links.email, 1), C.links.phone && btn('Call ' + C.links.phoneText, C.links.phone), btn('LinkedIn ↗', C.links.linkedin), btn('GitHub ↗', C.links.github), C.links.archive && btn('Previous site ↗', C.links.archive)),
+  C.cta.note && h('p', { class: 'muted note' }, C.cta.note),
   h('footer', { class: 'mono' }, `© ${new Date().getFullYear()} ${C.name} · Hyderabad, India`));
 
 export function renderAll() {
   const nav = document.getElementById('nav');
   C.nav.forEach(([id, t]) => nav.append(h('a', { href: '#' + id }, t)));
-  document.getElementById('main').replaceChildren(hero(), about(), experience(), projects(), matrix(), approach(), contact());
+  document.getElementById('main').replaceChildren(hero(), offer(), about(), projects(), experience(), matrix(), approach(), howWork(), faq(), contact());
 }
